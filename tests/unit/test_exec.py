@@ -1,9 +1,19 @@
-__copyright__ = "Copyright (c) 2020-2021 Jina AI Limited. All rights reserved."
-__license__ = "Apache-2.0"
+import os
 
-from jina.executors import BaseExecutor
+from jina import Executor, Document, DocumentArray
+
+try:
+    from vggish_audio_encoder import VggishEncoder
+except:
+    from jinahub.encoders.audio.vggish_audio_encoder import VggishEncoder
 
 
-def test_exec():
-    ex = BaseExecutor.load_config('../../config.yml')
-    assert ex._dim == 128
+
+cur_dir = os.path.dirname(os.path.abspath(__file__))
+
+def test_load():
+    encoder = Executor.load_config(os.path.join(cur_dir, '../../config.yml'))
+    assert encoder.path_encoder.endswith('tfidf_vectorizer.pickle')
+
+
+

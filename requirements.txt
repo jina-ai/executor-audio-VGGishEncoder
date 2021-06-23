@@ -1,3 +1,10 @@
-torch==1.7.1
-clip @ git+https://github.com/openai/CLIP.git@cfcffb90e69f37bf2ff1e988237a0fbe41f33c04
 jina==2.0.0rc6
+resampy==0.2.2
+#tensorflow_cpu==2.2.0
+tensorflow_cpu==2.5.0rc0
+tf_slim==1.1.0
+six==1.15.0
+soundfile==0.10.3.post1
+librosa==0.8.0
+click==7.1.2
+pandas==1.2.2
