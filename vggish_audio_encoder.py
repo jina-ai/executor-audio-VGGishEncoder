@@ -7,7 +7,6 @@ import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 
 from jina import Executor, requests, Document, DocumentArray
-from vggish.vggish_params import *
 from vggish.vggish_postprocess import *
 from vggish.vggish_slim import *
 
@@ -19,7 +18,7 @@ def _batch_generator(data: List[Any], batch_size: int):
         yield data[i: i + batch_size]
 
 
-class VggishEncoder(Executor):
+class VggishAudioEncoder(Executor):
     """
      Encode audio data with Vggish embeddings
 

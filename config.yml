@@ -1,4 +1,4 @@
-jtype: VggishEncoder
+jtype: VggishAudioEncoder
 with:
   {}
 metas:
