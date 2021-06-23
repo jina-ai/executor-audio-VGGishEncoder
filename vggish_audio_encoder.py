@@ -1,17 +1,13 @@
 __copyright__ = "Copyright (c) 2021 Jina AI Limited. All rights reserved."
 __license__ = "Apache-2.0"
 
-import io
-from typing import Any, Dict, List
+from typing import Any
 
-import numpy as np
 from jina.executors.decorators import batching, single
 from jina.executors.encoders.frameworks import BaseTFEncoder
-from jina.executors.segmenters import BaseSegmenter
-from jinahub.vggish_input import *
-from jinahub.vggish_params import *
-from jinahub.vggish_postprocess import *
-from jinahub.vggish_slim import *
+from vggish.vggish_params import *
+from vggish.vggish_postprocess import *
+from vggish.vggish_slim import *
 
 
 class VggishEncoder(BaseTFEncoder):
