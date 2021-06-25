@@ -1,6 +1,6 @@
 import os
 
-from jina import Executor, Document, DocumentArray
+from jina import Executor
 
 try:
     from vggish_audio_encoder import VggishAudioEncoder

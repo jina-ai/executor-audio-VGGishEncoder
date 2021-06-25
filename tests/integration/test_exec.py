@@ -25,8 +25,7 @@ def test_flow_from_yml():
 
 
 def test_embedding():
-
-    x_audio, sample_rate = librosa.load(os.path.join(cur_dir, '../data/sample.mp3'))
+    x_audio, sample_rate = librosa.load(os.path.join(cur_dir, '../data/sample.wav'))
     log_mel_examples = vggish_input.waveform_to_examples(x_audio, sample_rate)
     doc = DocumentArray([Document(blob=log_mel_examples)])
 
