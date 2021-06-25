@@ -11,5 +11,7 @@ jobs:
       - name: Soundfile
         run: |
           sudo apt-get install libsndfile1
+      - name: Models
+        run: ./scripts/download_model.sh
       - id: tests
         run: ./scripts/tests.sh
