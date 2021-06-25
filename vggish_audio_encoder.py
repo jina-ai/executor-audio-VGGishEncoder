@@ -29,8 +29,8 @@ class VggishAudioEncoder(Executor):
      """
 
     def __init__(self,
-                 model_path: str = os.path.join(cur_dir, 'vggish_model.ckpt'),
-                 pca_path: str = os.path.join(cur_dir, 'vggish_pca_params.npz'),
+                 model_path: str = os.path.join(cur_dir, 'models/vggish_model.ckpt'),
+                 pca_path: str = os.path.join(cur_dir, 'models/vggish_pca_params.npz'),
                  default_batch_size: int = 128,
                  default_traversal_paths: Iterable[str] = ['r'],
                  *args, **kwargs):
@@ -44,6 +44,11 @@ class VggishAudioEncoder(Executor):
         self.sess = tf.compat.v1.Session()
         define_vggish_slim()
         load_vggish_slim_checkpoint(self.sess, self.model_path)
+        self.feature_tensor = self.sess.graph.get_tensor_by_name(
+            INPUT_TENSOR_NAME)
+        self.embedding_tensor = self.sess.graph.get_tensor_by_name(
+            OUTPUT_TENSOR_NAME)
+        self.post_processor = Postprocessor(self.pca_path)
 
     def post_init(self):
 
