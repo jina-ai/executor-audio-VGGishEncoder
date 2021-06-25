@@ -8,5 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Soundfile
+        run: |
+          sudo apt-get install libsndfile1
       - id: tests
         run: ./scripts/tests.sh
