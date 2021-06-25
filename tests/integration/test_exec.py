@@ -33,5 +33,3 @@ def test_embedding():
         responses = f.post(on='index', inputs=doc, return_results=True)
 
     assert responses[0].docs[0].embedding is not None
-
-
