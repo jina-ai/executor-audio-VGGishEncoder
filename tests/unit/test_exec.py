@@ -3,11 +3,9 @@ import os
 from jina import Executor, Document, DocumentArray
 
 try:
-    from vggish_audio_encoder import VggishEncoder
+    from vggish_audio_encoder import VggishAudioEncoder
 except:
-    from jinahub.encoders.audio.vggish_audio_encoder import VggishEncoder
-
-
+    from jinahub.encoders.audio.vggish_audio_encoder import VggishAudioEncoder
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 
