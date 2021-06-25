@@ -11,7 +11,7 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 def test_load():
     encoder = Executor.load_config(os.path.join(cur_dir, '../../config.yml'))
-    assert encoder.path_encoder.endswith('vggish_model.ckpt')
+    assert encoder.model_path.endswith('vggish_model.ckpt')
 
 
 
