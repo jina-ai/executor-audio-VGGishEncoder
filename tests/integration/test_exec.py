@@ -18,8 +18,9 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 def test_flow_from_yml():
 
     doc = DocumentArray([Document()])
-
+    print('\n\n\nBEFORE FLOW\n\n\n')
     with Flow.load_config(os.path.join(cur_dir, 'flow.yml')) as f:
+        print('\n\n\nHERE\n\n\n')
         resp = f.post(on='test', inputs=doc, return_results=True)
 
     assert resp is not None
@@ -31,7 +32,9 @@ def test_embedding():
     log_mel_examples = vggish_input.waveform_to_examples(x_audio, sample_rate)
     doc = DocumentArray([Document(blob=log_mel_examples)])
 
+    print('\n\n\nBEFORE FLOW EMBEDDING\n\n\n')
     with Flow.load_config(os.path.join(cur_dir, 'flow.yml')) as f:
+        print('\n\n\nINSIDE FLOW EMBEDDING\n\n\n')
         responses = f.post(on='test', inputs=doc, return_results=True)
 
     assert responses[0].docs[0].embedding is not None
