@@ -24,7 +24,7 @@ def test_flow_from_yml():
     assert resp is not None
 
 
-def test_embedding_wav():
+def test_embedding():
     x_audio, sample_rate = librosa.load(os.path.join(cur_dir, '../data/sample.wav'))
     log_mel_examples = vggish_input.waveform_to_examples(x_audio, sample_rate)
     doc = DocumentArray([Document(blob=log_mel_examples)])
@@ -35,12 +35,3 @@ def test_embedding_wav():
     assert responses[0].docs[0].embedding is not None
 
 
-def test_embedding_mp3():
-    x_audio, sample_rate = librosa.load(os.path.join(cur_dir, '../data/sample.mp3'))
-    log_mel_examples = vggish_input.waveform_to_examples(x_audio, sample_rate)
-    doc = DocumentArray([Document(blob=log_mel_examples)])
-
-    with Flow.load_config(os.path.join(cur_dir, 'flow.yml')) as f:
-        responses = f.post(on='index', inputs=doc, return_results=True)
-
-    assert responses[0].docs[0].embedding is not None
