@@ -47,10 +47,10 @@ class VggishAudioEncoder(Executor):
     def encode(self, docs: Optional[DocumentArray], parameters: dict, *args, **kwargs) -> Any:
 
         if docs:
-            document_batches_generator = self._get_input_data_generator(docs, parameters)
-            self._create_embeddings(document_batches_generator)
+            cleaned_document_array = self._get_input_data(docs, parameters)
+            self._create_embeddings(cleaned_document_array)
 
-    def _get_input_data_generator(self, docs: DocumentArray, parameters: dict):
+    def _get_input_data(self, docs: DocumentArray, parameters: dict):
         """Create a filtered set of Documents to iterate over."""
 
         traversal_paths = parameters.get('traversal_paths', self.default_traversal_paths)
