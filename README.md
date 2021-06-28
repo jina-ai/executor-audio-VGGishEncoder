@@ -1,12 +1,6 @@
-# 📝 PLEASE READ [THE GUIDELINES](.github/GUIDELINES.md) BEFORE STARTING.
+# ✨ VggishAudioEncoder
 
-# 🏗️ PLEASE CHECK OUT [STEP-BY-STEP](.github/STEP_BY_STEP.md)
-
-----
-
-# ✨ MyDummyExecutor
-
-**MyDummyExecutor** is a class that ...
+**VggishAudioEncoder** is a class that wraps the [VGGISH][https://github.com/tensorflow/models/tree/master/research/audioset/vggish] model for generating embeddings for audio data. 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -21,7 +15,7 @@
 
 ## 🌱 Prerequisites
 
-Some conditions to fulfill before running the executor
+Run the provided bash script `download_model.sh` to download the pretrained model.
 
 ## 🚀 Usages
 
@@ -33,7 +27,7 @@ Use the prebuilt images from JinaHub in your python codes,
 ```python
 from jina import Flow
 	
-f = Flow().add(uses='jinahub+docker://MyDummyExecutor')
+f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder')
 ```
 
 or in the `.yml` config.
@@ -42,7 +36,7 @@ or in the `.yml` config.
 jtype: Flow
 pods:
   - name: encoder
-    uses: 'jinahub+docker://MyDummyExecutor'
+    uses: 'jinahub+docker://VGGishAudioEncoder'
 ```
 
 #### using source codes
@@ -51,7 +45,7 @@ Use the source codes from JinaHub in your python codes,
 ```python
 from jina import Flow
 	
-f = Flow().add(uses='jinahub://MyDummyExecutor')
+f = Flow().add(uses='jinahub://VGGishAudioEncoder')
 ```
 
 or in the `.yml` config.
@@ -60,25 +54,25 @@ or in the `.yml` config.
 jtype: Flow
 pods:
   - name: encoder
-    uses: 'jinahub://MyDummyExecutor'
+    uses: 'jinahub://VGGishAudioEncoder'
 ```
 
 
 ### 📦️ Via Pypi
 
-1. Install the `jinahub-MY-DUMMY-EXECUTOR` package.
+1. Install the `jinahub-VGGishAudioEncoder` package.
 
 	```bash
-	pip install git+https://github.com/jina-ai/EXECUTOR_REPO_NAME.git
+	pip install git+https://github.com/jina-ai/executor-audio-VGGishEncoder.git
 	```
 
 1. Use `jinahub-MY-DUMMY-EXECUTOR` in your code
 
 	```python
 	from jina import Flow
-	from jinahub.SUB_PACKAGE_NAME.MODULE_NAME import MyDummyExecutor
+	from jinahub.SUB_PACKAGE_NAME.MODULE_NAME import VggishAudioEncoder
 	
-	f = Flow().add(uses=MyDummyExecutor)
+	f = Flow().add(uses=VggishAudioEncoder)
 	```
 
 
@@ -87,9 +81,9 @@ pods:
 1. Clone the repo and build the docker image
 
 	```shell
-	git clone https://github.com/jina-ai/EXECUTOR_REPO_NAME.git
-	cd EXECUTOR_REPO_NAME
-	docker build -t my-dummy-executor-image .
+	git clone https://github.com/jina-ai/executor-audio-VggishAudioEncoder.git
+	cd executor-audio-VGGishEncoder
+	docker build -t executor-audio-VGGishEncoder-image .
 	```
 
 1. Use `my-dummy-executor-image` in your codes
@@ -97,9 +91,8 @@ pods:
 	```python
 	from jina import Flow
 	
-	f = Flow().add(uses='docker://my-dummy-executor-image:latest')
+	f = Flow().add(uses='docker://executor-audio-VGGishEncoder-image:latest')
 	```
-	
 
 ## 🎉️ Example 
 
@@ -107,7 +100,7 @@ pods:
 ```python
 from jina import Flow, Document
 
-f = Flow().add(uses='jinahub+docker://MyDummyExecutor')
+f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
 
 with f:
     resp = f.post(on='foo', inputs=Document(), return_resutls=True)
@@ -116,13 +109,14 @@ with f:
 
 ### Inputs 
 
-`Document` with `blob` of the shape `256`.
+`Document` with `blob` of containing loaded audio.
 
 ### Returns
 
-`Document` with `embedding` fields filled with an `ndarray` of the shape `embedding_dim` (=128, by default) with `dtype=nfloat32`.
+`Document` with `embedding` fields filled with an `ndarray` of the shape `embedding_dim` with `dtype=nfloat32`.
 
 
 ## 🔍️ Reference
-- Some reference
+- [VGGISH paper][https://research.google/pubs/pub45611/]
+- [VGGISH code][https://github.com/tensorflow/models/tree/master/research/audioset/vggish]
 

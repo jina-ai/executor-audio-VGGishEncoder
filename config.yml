@@ -1,4 +1,6 @@
-jtype: MyDummyExecutor
+jtype: VggishAudioEncoder
+with:
+  {}
 metas:
   py_modules:
-    - MODULE_NAME.py
+    - vggish_audio_encoder.py
