@@ -3,13 +3,11 @@ MODEL_DIR=models
 DATA_DIR=data
 REPO_DIR=audioset_tagging_cnn
 
-# === Check for dirs first and get errors out of the way ===
 if [ -d "$MODEL_DIR" ]; then
   echo $MODEL_DIR ' exists. Please delete it to continue'
   exit 1
 fi
 
-# ============ Download the model ============
 echo "Downloading model"
 mkdir -p ${MODEL_DIR}
 echo "------ Download Vggish model ------"

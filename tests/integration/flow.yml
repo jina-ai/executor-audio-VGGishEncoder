@@ -6,5 +6,3 @@ executors:
   - name: encoder
     uses:
       jtype: VggishAudioEncoder
-      with:
-        default_batch_size: 256
