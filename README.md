@@ -83,7 +83,7 @@ pods:
 	```shell
 	git clone https://github.com/jina-ai/executor-audio-VggishAudioEncoder.git
 	cd executor-audio-VGGishEncoder
-	docker build -t executor-audio-VGGishEncoder-image .
+	docker build -t executor-audio-vggish-encoder-image .
 	```
 
 1. Use `my-dummy-executor-image` in your codes
@@ -91,7 +91,7 @@ pods:
 	```python
 	from jina import Flow
 	
-	f = Flow().add(uses='docker://executor-audio-VGGishEncoder-image:latest')
+	f = Flow().add(uses='docker://executor-audio-vggish-encoder-image:latest')
 	```
 
 ## 🎉️ Example 
