@@ -85,7 +85,7 @@ pods:
 	docker build -t executor-audio-vggish-encoder-image .
 	```
 
-1. Use `my-dummy-executor-image` in your codes
+1. Use `executor-audio-vggish-encoder-image` in your codes
 
 	```python
 	from jina import Flow
