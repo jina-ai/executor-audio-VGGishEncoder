@@ -31,7 +31,6 @@ f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder')
 ```
 
 or in the `.yml` config.
-	
 ```yaml
 jtype: Flow
 pods:
@@ -66,13 +65,13 @@ pods:
 	pip install git+https://github.com/jina-ai/executor-audio-VGGishEncoder.git
 	```
 
-1. Use `jinahub-MY-DUMMY-EXECUTOR` in your code
+1. Use `jinahub-vggishaudio-encoder` in your code
 
 	```python
 	from jina import Flow
-	from jinahub.SUB_PACKAGE_NAME.MODULE_NAME import VggishAudioEncoder
+	from jinahub.encoder.jinahub-vggishaudio-encoder import VggishAudioEncoder
 	
-	f = Flow().add(uses=VggishAudioEncoder)
+	f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
 	```
 
 
