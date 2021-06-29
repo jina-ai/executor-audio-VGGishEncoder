@@ -1,3 +1,5 @@
+# f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
+
 # ✨ VggishAudioEncoder
 
 **VggishAudioEncoder** is a class that wraps the [VGGISH](https://github.com/tensorflow/models/tree/master/research/audioset/vggish) model for generating embeddings for audio data. 
@@ -95,16 +97,46 @@ pods:
 
 ## 🎉️ Example 
 
+With fake data
 
 ```python
-from jina import Flow, Document
+import numpy as np
+from jina import Flow, Document, DocumentArray
 
-f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
+f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder', timeout_ready=3000)
+
+fake_log_mel_examples = np.random.random((2,96,64))
+doc_array = DocumentArray([Document(blob=fake_log_mel_examples)])
 
 with f:
-    resp = f.post(on='foo', inputs=Document(), return_results=True)
-	print(f'{resp}')
+    resp = f.post(on='test', inputs=doc_array, return_results=True)
+		print(f'{resp}')
 ```
+
+Example with real data
+
+
+```python
+import librosa
+from jina import Flow, Document, DocumentArray
+from vggish import vggish_input
+
+f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder', timeout_ready=3000)
+
+# Load data
+x_audio, sample_rate = librosa.load('./data/sample.wav')
+log_mel_examples = vggish_input.waveform_to_examples(x_audio, sample_rate)
+doc_array = DocumentArray([Document(blob=log_mel_examples)])
+
+with f:
+    resp = f.post(on='test', inputs=doc_array, return_results=True)
+    
+print(f'{resp}')
+```
+
+
+
+
 
 ### Inputs 
 
