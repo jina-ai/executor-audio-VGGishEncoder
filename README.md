@@ -1,4 +1,3 @@
-# f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
 
 # ✨ VggishAudioEncoder
 
