@@ -70,7 +70,6 @@ class VggishAudioEncoder(Executor):
 
         for d in filtered_docs:
             # Vggish broadcasts across different length audios, not batches
-            print('###', len(d))
             [embedding] = self.sess.run([self.embedding_tensor], feed_dict={self.feature_tensor: d[0].blob})
             result = self.post_processor.postprocess(embedding)
             d[0].embedding = (np.float32(result) - 128.) / 128.
