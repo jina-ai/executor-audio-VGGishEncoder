@@ -132,3 +132,5 @@ dmypy.json
 # PyCharm
 .idea/
 
+toy*.py
+
