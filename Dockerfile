@@ -1,7 +1,7 @@
 FROM jinaai/jina:2.0
 
 # install git
-RUN apt-get -y update && apt-get install -y git curl
+RUN apt-get -y update && apt-get install -y git curl  && apt-get install -y libsndfile-dev
 
 # install requirements before copying the workspace
 COPY requirements.txt /requirements.txt
@@ -13,4 +13,5 @@ WORKDIR /workspace
 
 RUN ./scripts/download_model.sh
 
+ENV PYTHONPATH=/workspace
 ENTRYPOINT ["jina", "executor", "--uses", "config.yml"]
