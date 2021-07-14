@@ -1,3 +1,4 @@
+
 # ✨ VggishAudioEncoder
 
 **VggishAudioEncoder** is a class that wraps the [VGGISH](https://github.com/tensorflow/models/tree/master/research/audioset/vggish) model for generating embeddings for audio data. 
@@ -31,7 +32,6 @@ f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder')
 ```
 
 or in the `.yml` config.
-	
 ```yaml
 jtype: Flow
 pods:
@@ -66,13 +66,13 @@ pods:
 	pip install git+https://github.com/jina-ai/executor-audio-VGGishEncoder.git
 	```
 
-1. Use `jinahub-MY-DUMMY-EXECUTOR` in your code
+1. Use `jinahub-vggishaudio-encoder` in your code
 
 	```python
 	from jina import Flow
-	from jinahub.SUB_PACKAGE_NAME.MODULE_NAME import VggishAudioEncoder
+	from jinahub.encoder.jinahub-vggishaudio-encoder import VggishAudioEncoder
 	
-	f = Flow().add(uses=VggishAudioEncoder)
+	f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
 	```
 
 
@@ -86,7 +86,7 @@ pods:
 	docker build -t executor-audio-vggish-encoder-image .
 	```
 
-1. Use `my-dummy-executor-image` in your codes
+1. Use `executor-audio-vggish-encoder-image` in your codes
 
 	```python
 	from jina import Flow
@@ -96,16 +96,46 @@ pods:
 
 ## 🎉️ Example 
 
+With fake data
 
 ```python
-from jina import Flow, Document
+import numpy as np
+from jina import Flow, Document, DocumentArray
 
-f = Flow().add(uses='jinahub+docker://VggishAudioEncoder')
+f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder', timeout_ready=3000)
+
+fake_log_mel_examples = np.random.random((2,96,64))
+doc_array = DocumentArray([Document(blob=fake_log_mel_examples)])
 
 with f:
-    resp = f.post(on='foo', inputs=Document(), return_resutls=True)
-	print(f'{resp}')
+    resp = f.post(on='test', inputs=doc_array, return_results=True)
+		print(f'{resp}')
 ```
+
+Example with real data
+
+
+```python
+import librosa
+from jina import Flow, Document, DocumentArray
+from vggish import vggish_input
+
+f = Flow().add(uses='jinahub+docker://VGGishAudioEncoder', timeout_ready=3000)
+
+# Load data
+x_audio, sample_rate = librosa.load('./data/sample.wav')
+log_mel_examples = vggish_input.waveform_to_examples(x_audio, sample_rate)
+doc_array = DocumentArray([Document(blob=log_mel_examples)])
+
+with f:
+    resp = f.post(on='test', inputs=doc_array, return_results=True)
+    
+print(f'{resp}')
+```
+
+
+
+
 
 ### Inputs 
 

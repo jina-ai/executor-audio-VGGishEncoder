@@ -3,5 +3,5 @@
 .github
 .pytest_cache
 tests
+venv
 __pycache__
-scripts
