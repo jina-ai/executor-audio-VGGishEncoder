@@ -20,6 +20,10 @@ __license__ = "Apache-2.0"
 
 import resampy
 
+import sys
+import os
+sys.path.append(os.getcwd())
+
 from vggish.vggish_params import *
 from vggish.mel_features import *
 
