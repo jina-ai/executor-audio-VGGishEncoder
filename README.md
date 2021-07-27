@@ -1,3 +1,5 @@
+MOVED TO https://github.com/jina-ai/executors/tree/main/jinahub/encoders/audio/VGGISHAudioEncoder
+
 
 # ✨ VggishAudioEncoder
 
